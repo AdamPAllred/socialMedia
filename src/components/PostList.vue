@@ -108,7 +108,7 @@ export default {
       else {
         post.heart = "noColorHeart.png"
       }
-    }
+    },
   }
 }
 </script>

@@ -1,11 +1,17 @@
 <template>
   <div>
     <h1> Beth123's Page</h1>
+    <div class="info">
+      <button @click="editPage()">Edit Page</button>
+    </div>
       <div class="info">
-          <p> Welcome to my page! I love all cute things, dogs, cats, anything!, please give me a follow and have so much fun.
-          I hope you have a blast and have a great day!
-          Welcome to my page! I love all cute things, dogs, cats, anything!, please give me a follow and have so much fun.
-          Welcome to my page! I love all cute things, dogs, cats, anything!, please give me a follow and have so much fun.  </p>
+          <div id="bio"></div>
+      </div>
+      <div v-if="this.editingPage">
+        <div class="info">
+          <input v-model="bio" placeholder="Bio">
+          <button @click="editBio(bio)">Edit Bio</button>
+        </div>
       </div>
     <PostList :posts="posts" />
   </div>
@@ -14,9 +20,15 @@
 <script>
 import PostList from "../components/PostList.vue"
 export default {
-  name: 'Home',
+  name: 'UserPage',
   components: {
     PostList
+  },
+  data() {
+    return {
+      editingPage: false,
+      bio: null,
+    }
   },
   computed: {
     posts() {
@@ -27,10 +39,27 @@ export default {
           addPost.push(currPosts[i]);
         }
       }
-      console.log(addPost.length);
       return addPost;
-    }
+    },
   },
+  methods: {
+    editBio(bio) {
+      let results = "";
+      results += "<p> Bio: ";
+      results += bio;
+      results += "</p>";
+
+      document.getElementById("bio").innerHTML = results;
+    },
+    editPage() {
+      if(this.editingPage) {
+        this.editingPage = false;
+      }
+      else {
+        this.editingPage = true;
+      }
+    },
+  }
 }
 </script>
 

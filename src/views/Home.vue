@@ -12,6 +12,7 @@
       </div>
     </div>
     <PostList :posts="posts" />
+    <p><a href="https://github.com/AdamPAllred/socialMedia">GitHub Link!</a></p>
   </div>
 </template>
 
